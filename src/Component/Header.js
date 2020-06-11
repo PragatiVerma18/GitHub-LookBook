@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Users from './Users';
 
 function Header() {
 	const [showResults, setShowResults] = useState(false);
@@ -16,7 +15,6 @@ function Header() {
 		axios
 			.get(`https://api.github.com/search/users?q=${usernameFromButtonClick}`)
 			.then((res) => {
-				console.log(res.data.items);
 				setUsers(res.data.items);
 			})
 			.catch((err) => {
@@ -63,8 +61,8 @@ function Header() {
 						return (
 							<div className='card columns' key={user.login}>
 								<div className='column is-half avatar'>
-									<div class='card-image'>
-										<figure class='image'>
+									<div className='card-image'>
+										<figure className='image'>
 											<img src={user.avatar_url} alt='user' />
 										</figure>
 									</div>
@@ -73,6 +71,7 @@ function Header() {
 									<h1 className='is-size-3 has-text-weight-bold'>
 										{user.login}
 									</h1>
+									<a href={user.html_url}>{user.html_url}</a>
 								</div>
 							</div>
 						);
